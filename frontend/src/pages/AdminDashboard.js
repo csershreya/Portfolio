@@ -13,7 +13,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    fetch("http://localhost:5000/api/contact", {
+    fetch("/api/contact", {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())

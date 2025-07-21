@@ -144,7 +144,7 @@ export default function ContactProjectForm() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

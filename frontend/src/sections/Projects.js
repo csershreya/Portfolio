@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Section = styled.section`
-  height: 100vh;
+  min-height: 100vh;
   background: #1e293b;
   color: white;
   display: flex;
@@ -13,6 +13,7 @@ const Section = styled.section`
 
 const Content = styled.div`
   max-width: 900px;
+  width: 100%;
   text-align: center;
 `;
 
@@ -24,26 +25,46 @@ const ProjectList = styled.div`
 `;
 
 const ProjectCard = styled.div`
-  background: #1e293b;
+  background: #334155;
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 `;
 
+const ProjectImage = styled.img`
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/projects')  // use relative path
+      .then(res => res.json())
+      .then(data => setProjects(data))
+      .catch(err => console.error('Error fetching projects:', err));
+  }, []);
+
   return (
     <Section id="projects">
       <Content>
         <h2>Projects</h2>
         <ProjectList>
-          <ProjectCard>
-            <h3>Portfolio Website</h3>
-            <p>A React-based personal portfolio showcasing 3D components and smooth navigation.</p>
-          </ProjectCard>
-          <ProjectCard>
-            <h3>Design Dashboard</h3>
-            <p>Responsive UI dashboard created using styled-components and chart libraries.</p>
-          </ProjectCard>
+          {projects.map((project) => (
+            <ProjectCard key={project._id}>
+              <ProjectImage src={project.image} alt={project.title} />
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <p><strong>Tech:</strong> {project.techStack.join(", ")}</p>
+              <div style={{ marginTop: "0.5rem" }}>
+                <a href={project.liveLink} target="_blank" rel="noreferrer" style={{ color: "#93c5fd", marginRight: "1rem" }}>Live</a>
+                <a href={project.githubLink} target="_blank" rel="noreferrer" style={{ color: "#93c5fd" }}>GitHub</a>
+              </div>
+            </ProjectCard>
+          ))}
         </ProjectList>
       </Content>
     </Section>
