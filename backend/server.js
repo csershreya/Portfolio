@@ -13,15 +13,16 @@ app.use(cors());
 app.use(express.json());
 
 // API Routes
-console.log("Mounting messageRoutes");
+
 app.use('/api/projects', projectRoutes);
-console.log("Mounting projectRoutes");
-app.use('/api/contact', messageRoutes);
+
+app.use('/api/messages', messageRoutes);
 
 // Serve static files from frontend
 const path = require('path');
+app.use('/uploads', express.static('uploads'));
 app.use(express.static(path.join(__dirname, '../frontend/build')));
-app.get('*', (req, res) => {
+app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
 // Connect MongoDB and start server
