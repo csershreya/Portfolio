@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./AdminDashboard.css";
 import baseURL from "../utils/baseURL";
 
-fetch(`${baseURL}/api/projects`)
 
 export default function AdminDashboard() {
   const [messages, setMessages] = useState([]);

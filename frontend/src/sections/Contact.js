@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import profileImg from "../assets/myPhoto.jpg";
+import baseURL from "../utils/baseURL";
+
+
 
 const Section = styled.section`
   background-color: rgb(5, 26, 48);

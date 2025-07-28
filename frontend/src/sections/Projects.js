@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import baseURL from "../utils/baseURL";
+
+
 
 const Section = styled.section`
   min-height: 100vh;
