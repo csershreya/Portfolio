@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./AdminDashboard.css";
+import baseURL from "../utils/baseURL";
+
+fetch(`${baseURL}/api/projects`)
 
 export default function AdminDashboard() {
   const [messages, setMessages] = useState([]);
@@ -27,7 +30,7 @@ export default function AdminDashboard() {
     }
 
     // Fetch Messages
-    fetch("/api/messages", {
+    fetch(`${baseURL}/api/messages`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -41,7 +44,7 @@ export default function AdminDashboard() {
       });
 
     // Fetch Projects
-    fetch("/api/projects", {
+    fetch(`${baseURL}/api/projects`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -72,7 +75,7 @@ export default function AdminDashboard() {
       formData.append("image", newProject.imageUrl);  // sending actual file
     }
 
-    fetch("/api/projects", {
+    fetch(`${baseURL}/api/projects`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`  // Don't set Content-Type for multipart!
@@ -98,7 +101,7 @@ export default function AdminDashboard() {
   const handleDeleteProject = (id) => {
     if (!window.confirm("Are you sure you want to delete this project?")) return;
 
-    fetch(`/api/projects/${id}`, {
+    fetch(`${baseURL}/api/projects/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })

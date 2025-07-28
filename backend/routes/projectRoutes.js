@@ -6,7 +6,7 @@ const upload = require("../middleware/upload");
 router.post("/", upload.single("image"), async (req, res) => {
   try {
     const { title, description, techStack, liveLink, githubLink } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : "";
+    const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` : "";
 
     const newProject = new Project({
       title,
