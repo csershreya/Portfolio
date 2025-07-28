@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import baseURL from '../utils/baseURL';
 
 const Nav = styled.nav`
   position: fixed;
@@ -59,7 +59,7 @@ const Logo = styled.div`
 const Navbar = () => {
   return (
     <Nav>
-  <Logo>Shreya<a href={`${process.env.REACT_APP_BASE_URL}/admin-login`} target="_blank" rel="noopener noreferrer"> Gupta</a></Logo>
+  <Logo>Shreya<a href={`${baseURL}/admin-login`} target="_blank" rel="noopener noreferrer"> Gupta</a></Logo>
   <div>
     <NavItem href="#home">Home</NavItem>
     <NavItem href="#about">About</NavItem>
