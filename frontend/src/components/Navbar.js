@@ -59,7 +59,7 @@ const Logo = styled.div`
 const Navbar = () => {
   return (
     <Nav>
-  <Logo>Shreya<a href='http://localhost:5000/admin-login' target="_blank" rel="noopener noreferrer"> Gupta</a></Logo>
+  <Logo>Shreya<a href={`${process.env.REACT_APP_BASE_URL}/admin-login`} target="_blank" rel="noopener noreferrer"> Gupta</a></Logo>
   <div>
     <NavItem href="#home">Home</NavItem>
     <NavItem href="#about">About</NavItem>
