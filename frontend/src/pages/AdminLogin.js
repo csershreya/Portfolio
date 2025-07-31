@@ -1,16 +1,20 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./AdminLogin.css";
 
 export default function AdminLogin() {
   const [password, setPassword] = useState("");
-  const storedPassword = process.env.REACT_APP_ADMIN_PASSWORD;
 
-  const handleLogin = (e) => {
-    e.preventDefault(); // Prevents page refresh on form submit
-    if (password === storedPassword) {
-      localStorage.setItem("admin-token", "valid-admin-token");
-      window.location.href = "/admin";
-    } else {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("/api/admin/login", { password });
+      if (res.data.token === "valid-admin-token") {
+        localStorage.setItem("admin-token", res.data.token);
+        window.location.href = "/admin";
+      }
+    } catch (err) {
       alert("Incorrect password");
     }
   };

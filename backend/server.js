@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const projectRoutes = require('./routes/projectRoutes');
 const messageRoutes = require('./routes/messageRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,6 +20,7 @@ app.use('/api/projects', projectRoutes);
 
 app.use('/api/messages', messageRoutes);
 
+app.use('/api/admin', adminRoutes);
 // Serve static files from frontend
 const path = require('path');
 app.use('/uploads', express.static('uploads'));
