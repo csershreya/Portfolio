@@ -124,12 +124,13 @@ export default function Projects() {
               <ImageWrapper>
                 <ProjectImage
                   src={
-                    project.imageUrl?.startsWith("/uploads/")
-                      ? project.imageUrl
+                    project.imageUrl
+                      ? `${baseURL}${project.imageUrl}`
                       : "https://via.placeholder.com/300x180?text=No+Image"
                   }
                   alt={project.title}
                 />
+
               </ImageWrapper>
               <ProjectTitle>{project.title}</ProjectTitle>
               <ProjectBody>
